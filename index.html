@@ -19,7 +19,7 @@
           <img src="assets/rex0_logo.png" alt="REX0 Logo" class="logo-img">
         </div>
       </div>
-
+      
       <nav class="nav">
         <ul>
           <li data-target="intro">Introduction</li>
@@ -34,41 +34,142 @@
 
     </aside>
 
+    
+
     <!-- Main content -->
     <main class="main">
-      <section id="intro" class="section content-block">
-        <h2>Recover. Retrain. Reclaim. REX0.</h2>
-        <p>mention that this is senior design project for eecs 159a/b </p>
+
+       <header class="hero">
+        <div class="hero-inner">
+          <img src="assets/rex0_logo_black.png" alt="REX0 Logo" class="hero-logo-img">
+            </div>
+        </header>
+        
+
+      <section id="intro" class="section intro">
+        <div class="intro-grid">
+          <div class="intro-left">
+            <h2>Rehab<br>Redefined<br><span class="highlight"></span></h2>
+          </div>
+          <div class="intro-right">
+            <p>The road to recovery is not easy, and for most individuals going through it, there are always some difficulties, such as cost and insurance limitations, challenges in correctly performing home exercises, limited communication with professionals, and emotional and mental hurdles like a lack of motivation or a feeling of being overwhelmed.</p>
+            <p>We aim to develop a comprehensive solution that combines a web/mobile application with a wearable device to facilitate recovery processes and keep patients on track to regaining their physical capabilities without as much monetary or mental sacrifice.</p>
+          </div>
+        </div>
       </section>
 
       <section id="problem" class="section"> 
         <h3>The Problem</h3>
-        <p>bring up stroke statistics, explain how strokes work, provide references </p> 
+        <p>To start, we can't make a universal solution to every possible rehab problem, and obviously, not everyone is recovering from the same injury nor are they experiencing the same effects from their injuries.</p> 
+        <p>As such, we would like to focus on a single chunk of rehab patients: stroke survivors. Globally, strokes are the 2nd leading cause of death, and with 12 million people suffering from one every year and with so many possible causes, it's undoubtedly a pressing issue.</p>
+        <p> Of those who suffer from strokes and survive, 65% fall victim to unilateral impaired hand function, making that one of the most common and debilitating consequences of strokes. While some degree of motor recovery is typical, more likely than not, the recovery is minimal and even tends to plateau after 6 months.</p>
+        <p> As we mentioned before, traditional rehab methods can be limited by time, access to care, patient mentality, and patient engagement; however, to properly recover from impaired hand function, it is imperative for patients to remain consistent with effective rehab practices. This led us to our solution: REX0. </p>
       </section>
 
       <section id="solution" class="section"> 
         <h3>Our Design</h3>
-        <p>explain our current design</p> 
-       </section>
+        <p>REX0 is a dual-glove therapy system involving a Control Glove and a Response Glove. Respectively, the Control Glove is placed on the still functional hand and the Response Glove is placed on the impaired hand, and as the names suggest, the Control Glove performs an action that the Response Glove receives and responds with an action.</p> 
+        <p>Together, they perform a function we call Motion Mimicry. The Control Glove is equipped with flex sensors on each finger that measure the degree of each bend. These resistance readings are then wirelessly transmitted to the Response Glove via an ESP32 Bluetooth module. The Response Glove, which also contains flex sensors, precisely mirrors the movement by curling its fingers until its sensor readings match those of the Control Glove, effectively mimicking the user's hand gestures.</p>
+        <p>To create the curling motion, we designed a multi-part mechanical system. We use a wire-and-anchor system (Wiring System) to pull each finger, ensuring the correct curling path by strategically placing anchors between the joints. A micro-servo with a custom 3D-printed spool then actuates this wire, controlling the pull. To return the finger to its normal position after a movement, we designed a separate retracting mechanism (Retraction System). This mechanism uses extension springs that stretch as the wire pulls the finger and naturally retract upon release to bring the finger back to a straight, resting position.</p>
+        <p>This system is complemented by a web/mobile application that allows users to track their progress, access guided exercises, and communicate with healthcare professionals. The app provides real-time feedback and motivational prompts to encourage consistent use and engagement with the therapy.</p>
+      </section>
 
       <section id="features" class="section"> 
         <h3>Features</h3>
-        <p>What functionalities do we want to implement in the app? What can we realistically accomplish in senior design</p> 
-       </section>
+        <p>Some features we plan to include in this project are quite ambitious, and we hope that we are able to finish it all within the 2-quarter timeframe.</p> 
+        <p>Web/Mobile Application</p>
+        <p>- AI-Powered Performance Feedback: The app will provide a feedback system where a patient attempts a hand movement demonstrated by the therapist via the functional glove. A visual similarity score will be generated and displayed on a GUI to help track and visualize a patient's progress. This will be accompanied by an interactive 3D visualization of the glove for a more immersive experience.</p>
+        <p>- Gamified Exercise and Motivation: To increase patient engagement, the app will turn therapy sessions into a game. Patients will be able to earn points, unlock achievements, and compete with others to make rehabilitation more enjoyable.</p>
+        <p>- Patient Progress and Support Portal: This portal will manage PT appointments and track rehab progress. It will also provide commentary and tips, generated by artificial intelligence and informed by licensed physical therapists, to help patients navigate plateaus and stay motivated.</p>
+        <p>Glove Hardware</p>
+        <p>- Ergonomic Design: The gloves are intentionally lightweight and breathable to ensure user comfort during extended use.</p>
+        <p>- Rechargeable Power System: All components are powered by rechargeable batteries, providing a convenient and sustainable power source.</p>
+        <p>- Wireless Connectivity: The gloves utilize Bluetooth technology to communicate with the web/mobile application, allowing for seamless data transfer and real-time feedback.</p>
+        <p>- Customizable Fit: The gloves will feature adjustable straps and padding to accommodate a wide range of hand sizes and shapes, ensuring a secure and comfortable fit for all users.</p>
+      </section>
 
       <section id="progress" class="section"> 
         <h3>Progress</h3>
-        <p>Where we are at right now, meaning what we have tested so far, what our current plan is, budgeting, gantt chart, etc.</p> 
-       </section>
+        <p>We began brainstorming this project back in May 2025 during the pre-senior design course EECS 198, and we did go through a bunch of design changes before settling on the one previously depicted. </p> 
+        <p>For the Control Glove, we wanted to establish by what process we'd get the functional hand movement to be copied over to the Response Glove, and we did come up with a couple things. Our first idea was to place one flex sensor on each finger, and as the flex sensor bends with the finger, it outputs a different resistance reading that changes proportionally to how the finger bends. Unfortunately, we do face one potential issue, being that flex sensor resistance outputs are based on overall bend, meaning that it has only 1 degree of freedom. The finger has 3 major joints, creating 3 major bending points for the sensor, but since the sensor can only read an overall bend, we would have to create an algorithm that accurately estimates the bends. We came up with other alternatives such as having 3 really short sensors on each joint on each finger or outright switching the system from flex sensors to IMUs, but both of those would easily put us over-budget. As a last resort, we will use computer vision to read hand movements. For the time being though, we settled on the single flex sensor per finger and are currently testing longer flex sensors.</p>
+        <p>For the Response Glove, we began with bowden cables, and to test, we used the brakes from an old but functioning bike. From testing, we found that our cables were not the most flexible when curling the finger, and it was a lot thicker than anticipated. We even attempted using it as a push cable instead of a pull, which was an interesting idea, but it couldn't push the finger to curl as much as we preferred. Because of that, we switched over to fishing wire, which ended up working the best as a pull mechanism. </p>
+        <p>After establishing the pull mechanism, we had to start working on the Actuating System and the Retracting System. We started testing the retracting system with rubber bands and then even considered just adding a separate wire that pulls back, however, we found that simply using properly anchored extension springs was more than enough. As for the Actuating System, we couldn’t afford to do linear actuators, so we settled for modified micro-servos with custom 3D printed spools to coil the fishing wire. Right now, the Actuating System is being prototyped.</p>
+        <p>Web/mobile app design is still being planned out and designed, but on the more logistical side, we have already established regular meetings, organized shared documentation, created a Gantt chart, and made a BOM. </p>
+      </section>
 
       <section id="team" class="section"> 
         <h3>Meet the Team</h3>
-        <p>Arrange everyone in a row with headshots, name, major, year + linkedins linked immediately below</p>
-        </section>
+        <div class="team-grid">
+          <div class="team-member">
+            <img src="assets/alan_pic.png" alt="Member 1">
+            <h4>Alan Tran</h4>
+            <p>Computer Science & Engineering, 3rd Year</p>
+            <a href="https://linkedin.com/in/alantran296" target="_blank" class="linkedin-link" aria-label="LinkedIn">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#08f" viewBox="0 0 24 24">
+                <path d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1 4.98 2.12 4.98 3.5zM0 8h5v16H0V8zm7.5 0h4.8v2.16h.07c.67-1.27 2.3-2.6 4.73-2.6 5.06 0 6 3.33 6 7.66V24h-5v-7.53c0-1.8-.03-4.13-2.52-4.13-2.53 0-2.92 1.97-2.92 4v7.66h-5V8z"/>
+              </svg>
+            </a>
+          </div>
+          <div class="team-member">
+            <img src="assets/brady_pic.jpg" alt="Member 2">
+            <h4>Brady Cason</h4>
+            <p>Computer Science & Engineering, 3rd Year</p>
+            <a href="https://linkedin.com/in/brady-cason" target="_blank" class="linkedin-link" aria-label="LinkedIn">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#08f" viewBox="0 0 24 24">
+                <path d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1 4.98 2.12 4.98 3.5zM0 8h5v16H0V8zm7.5 0h4.8v2.16h.07c.67-1.27 2.3-2.6 4.73-2.6 5.06 0 6 3.33 6 7.66V24h-5v-7.53c0-1.8-.03-4.13-2.52-4.13-2.53 0-2.92 1.97-2.92 4v7.66h-5V8z"/>
+              </svg>
+            </a>
+          </div>
+          <div class="team-member">
+            <img src="assets/anna_pic.png" alt="Member 3">
+            <h4>Anna Lee</h4>
+            <p>Computer Science & Engineering, 3rd Year</p>
+            <a href="https://www.linkedin.com/in/anna-lee-ab7383257/" target="_blank" class="linkedin-link" aria-label="LinkedIn">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#08f" viewBox="0 0 24 24">
+                <path d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1 4.98 2.12 4.98 3.5zM0 8h5v16H0V8zm7.5 0h4.8v2.16h.07c.67-1.27 2.3-2.6 4.73-2.6 5.06 0 6 3.33 6 7.66V24h-5v-7.53c0-1.8-.03-4.13-2.52-4.13-2.53 0-2.92 1.97-2.92 4v7.66h-5V8z"/>
+              </svg>
+            </a>
+          </div>
+          <div class="team-member">
+            <img src="assets/emily_pic.png" alt="Member 4">
+            <h4>Emily Gao</h4>
+            <p>Electrical Engineering, 4th Year</p>
+            <a href="https://linkedin.com/in/alantran296" target="_blank" class="linkedin-link" aria-label="LinkedIn">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#08f" viewBox="0 0 24 24">
+                <path d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1 4.98 2.12 4.98 3.5zM0 8h5v16H0V8zm7.5 0h4.8v2.16h.07c.67-1.27 2.3-2.6 4.73-2.6 5.06 0 6 3.33 6 7.66V24h-5v-7.53c0-1.8-.03-4.13-2.52-4.13-2.53 0-2.92 1.97-2.92 4v7.66h-5V8z"/>
+              </svg>
+            </a>
+          </div>
+          <div class="team-member">
+            <img src="assets/calvin_pic.jpg" alt="Member 5">
+            <h4>Calvin Luo</h4>
+            <p>Computer Engineering, 4th Year</p>
+            <a href="https://linkedin.com/in/alantran296" target="_blank" class="linkedin-link" aria-label="LinkedIn">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#08f" viewBox="0 0 24 24">
+                <path d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1 4.98 2.12 4.98 3.5zM0 8h5v16H0V8zm7.5 0h4.8v2.16h.07c.67-1.27 2.3-2.6 4.73-2.6 5.06 0 6 3.33 6 7.66V24h-5v-7.53c0-1.8-.03-4.13-2.52-4.13-2.53 0-2.92 1.97-2.92 4v7.66h-5V8z"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+      </section>
+
        <section id="references" class="section">
           <h3>References</h3>
-          <p>Cite all sources used in the project here</p>
+          <p>Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex sapien vitae pellentesque sem placerat. In id cursus mi pretium tellus duis convallis. Tempus leo eu aenean sed diam urna tempor. Pulvinar vivamus fringilla lacus nec metus bibendum egestas. Iaculis massa nisl malesuada lacinia integer nunc posuere. Ut hendrerit semper vel class aptent taciti sociosqu. Ad litora torquent per conubia nostra inceptos himenaeos.
+
+Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex sapien vitae pellentesque sem placerat. In id cursus mi pretium tellus duis convallis. Tempus leo eu aenean sed diam urna tempor. Pulvinar vivamus fringilla lacus nec metus bibendum egestas. Iaculis massa nisl malesuada lacinia integer nunc posuere. Ut hendrerit semper vel class aptent taciti sociosqu. Ad litora torquent per conubia nostra inceptos himenaeos.
+
+Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex sapien vitae pellentesque sem placerat. In id cursus mi pretium tellus duis convallis. Tempus leo eu aenean sed diam urna tempor. Pulvinar vivamus fringilla lacus nec metus bibendum egestas. Iaculis massa nisl malesuada lacinia integer nunc posuere. Ut hendrerit semper vel class aptent taciti sociosqu. Ad litora torquent per conubia nostra inceptos himenaeos.
+
+Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex sapien vitae pellentesque sem placerat. In id cursus mi pretium tellus duis convallis. Tempus leo eu aenean sed diam urna tempor. Pulvinar vivamus fringilla lacus nec metus bibendum egestas. Iaculis massa nisl malesuada lacinia integer nunc posuere. Ut hendrerit semper vel class aptent taciti sociosqu. Ad litora torquent per conubia nostra inceptos himenaeos.
+
+Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex sapien vitae pellentesque sem placerat. In id cursus mi pretium tellus duis convallis. Tempus leo eu aenean sed diam urna tempor. Pulvinar vivamus fringilla lacus nec metus bibendum egestas. Iaculis massa nisl malesuada lacinia integer nunc posuere. Ut hendrerit semper vel class aptent taciti sociosqu. Ad litora torquent per conubia nostra inceptos himenaeos.</p>
         </section>
+
+      <footer class="footer">
+          <p>EECS 159A/B Senior Design</p>
+          <p>Powered by 🍵ྀི and 🍖🍖🍖</p>
+      </footer>
     </main>
   </div>
 

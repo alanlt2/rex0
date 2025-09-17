@@ -17,7 +17,7 @@ window.addEventListener('scroll', () => {
   let current = "";
 
   sections.forEach(section => {
-    const sectionTop = section.offsetTop - 80; // offset for header spacing
+    const sectionTop = section.offsetTop - 100; 
     if (window.scrollY >= sectionTop) {
       current = section.getAttribute("id");
     }
@@ -29,4 +29,23 @@ window.addEventListener('scroll', () => {
       li.classList.add("active");
     }
   });
+});
+
+// Fade-in on scroll
+const observer = new IntersectionObserver(
+  (entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("visible");
+        observer.unobserve(entry.target); // animate once
+      }
+    });
+  },
+  { threshold: 0.2 }
+);
+
+// Apply fade-in to all sections
+document.querySelectorAll(".section").forEach(section => {
+  section.classList.add("fade-in");
+  observer.observe(section);
 });

@@ -10,11 +10,6 @@
 
   <link rel="stylesheet" href="style.css" />
 </head>
-<script>
-  document.querySelector('.menu-toggle').addEventListener('click', () => {
-    document.querySelector('.nav').classList.toggle('show');
-  });
-</script>
 <body>
   <div class="container">
     <!-- Sidebar -->
@@ -23,6 +18,12 @@
         <div class="logo">
           <img src="assets/rex0_logo.png" alt="REX0 Logo" class="logo-img">
         </div>
+      <button class="menu-toggle" aria-label="Menu">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+      </button>
+
       </div>
       
       <nav class="nav">
@@ -148,11 +149,6 @@
             <img src="assets/calvin_pic.jpg" alt="Member 5">
             <h4>Calvin Luo</h4>
             <p>Computer Engineering, 4th Year</p>
-            <a href="https://linkedin.com/in/alantran296" target="_blank" class="linkedin-link" aria-label="LinkedIn">
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#08f" viewBox="0 0 24 24">
-                <path d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1 4.98 2.12 4.98 3.5zM0 8h5v16H0V8zm7.5 0h4.8v2.16h.07c.67-1.27 2.3-2.6 4.73-2.6 5.06 0 6 3.33 6 7.66V24h-5v-7.53c0-1.8-.03-4.13-2.52-4.13-2.53 0-2.92 1.97-2.92 4v7.66h-5V8z"/>
-              </svg>
-            </a>
           </div>
         </div>
       </section>
@@ -165,5 +161,15 @@
   </div>
 
   <script src="script.js"></script>
+  <script>
+    const toggleBtn = document.querySelector('.menu-toggle');
+    const nav = document.querySelector('.nav');
+
+    toggleBtn.addEventListener('click', () => {
+      nav.classList.toggle('show');       // open/close menu
+      toggleBtn.classList.toggle('open'); // animate bars
+    });
+  </script>
+
 </body>
 </html>

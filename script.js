@@ -50,3 +50,10 @@ document.querySelectorAll(".section").forEach(section => {
   observer.observe(section);
 });
 
+const toggleBtn = document.querySelector('.menu-toggle');
+const nav = document.querySelector('.nav');
+
+toggleBtn.addEventListener('click', () => {
+  nav.classList.toggle('show');       // open/close menu
+  toggleBtn.classList.toggle('open'); // animate bars
+});

@@ -49,3 +49,4 @@ document.querySelectorAll(".section").forEach(section => {
   section.classList.add("fade-in");
   observer.observe(section);
 });
+

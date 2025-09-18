@@ -11,7 +11,7 @@ body {
 /* Layout */
 .container { display: flex; min-height: 100vh; }
 
-/* Sidebar */
+/* Sidebar (desktop) */
 .sidebar {
   width: 260px;
   background: #0a0a0a;
@@ -20,17 +20,25 @@ body {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-
-  /* New */
   position: sticky;
   top: 0;
-  height: 100vh;      /* fill screen height */
+  height: 100vh;
 }
-
 
 .logo-img {
   width: 160px;
   margin-bottom: 40px;
+}
+
+.menu-toggle {
+  display: none; /* hidden on desktop */
+  background: none;
+  border: 1px solid #444;
+  color: #fff;
+  padding: 6px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1rem;
 }
 
 .nav ul { list-style: none; width: 100%; }
@@ -95,36 +103,33 @@ body {
 /* Intro Section */
 .intro-grid {
   display: grid;
-  grid-template-columns: 1.4fr 1.6fr; /* narrow right column */
-  gap: 12px; /* smaller gap between columns */
-  align-items: center; /* vertical alignment */
+  grid-template-columns: 1.4fr 1.6fr;
+  gap: 12px;
+  align-items: center;
 }
 
 .intro-left h2 {
-  font-size: 4rem; /* much larger tagline */
+  font-size: 4rem;
   font-weight: 900;
   line-height: 1.1;
   letter-spacing: -1px;
 }
 
 .intro-left .highlight {
-  color: #08f; /* optional accent for part of the tagline */
+  color: #08f;
 }
 
 .intro-right {
-  /* optional: add padding if you want some breathing room */
-  padding-left: 0; /* remove extra padding if any */
+  padding-left: 0;
 }
 
 .intro-right p {
   font-size: 1.2rem;
   color: #ccc;
-  max-width: none;   /* allow paragraph to take full column width */
-  margin: 0;         /* no extra spacing */
-  line-height: 1.5;  /* optional for readability */
+  max-width: none;
+  margin: 0;
+  line-height: 1.5;
 }
-
-
 
 /* Mobile responsive */
 @media (max-width: 800px) {
@@ -135,8 +140,7 @@ body {
   }
 }
 
-/* Team Grid */
-/* Team Grid */
+/* Team Section */
 #team {
   display: flex;
   flex-direction: column;
@@ -144,33 +148,35 @@ body {
 }
 
 .team-grid {
-  display: flex;              /* use flex instead of grid */
-  justify-content: space-between; /* spread members evenly */
-  align-items: flex-start;    /* align to top */
-  gap: 32px;                  /* spacing between members */
+  display: grid;
+  grid-template-columns: repeat(5, 1fr); /* 5 equal columns */
+  gap: 40px;
   margin-top: 32px;
   width: 100%;
-  max-width: 1200px;          /* increase max-width if needed */
+  max-width: 1200px;
+  justify-items: center;
 }
+
+/* Pyramid placement */
+.team-member:nth-child(1) { grid-column: 1; grid-row: 1; }
+.team-member:nth-child(2) { grid-column: 3; grid-row: 1; }
+.team-member:nth-child(3) { grid-column: 5; grid-row: 1; }
+.team-member:nth-child(4) { grid-column: 2; grid-row: 2; }
+.team-member:nth-child(5) { grid-column: 4; grid-row: 2; }
 
 .team-member {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-between; /* space between top content and bottom icon */
   text-align: center;
-  flex: 1;
-  min-width: 150px;
-  height: 250px; /* fixed height to align all members */
 }
 
-
 .team-member img {
-  width: 120px;
-  height: 120px;
+  width: 160px;
+  height: 160px;
   border-radius: 50%;
-  margin-bottom: 12px;
-  border: 2px solid #222;
+  margin-bottom: 16px;
+  border: 3px solid #222;
 }
 
 .team-member h4 {
@@ -198,8 +204,8 @@ body {
 }
 
 .team-member a.linkedin-link svg {
-  width: 24px;
-  height: 24px;
+  width: 32px;
+  height: 32px;
   fill: #08f;
 }
 
@@ -210,41 +216,67 @@ body {
 
 .team-member a:hover { text-decoration: underline; }
 
-@media (max-width: 900px) {
-  .team-grid {
-    flex-direction: column;
-    align-items: center;
-    gap: 24px;
-  }
-  .team-member {
-    height: auto; /* let height adjust for stacked layout */
-  }
-}
-
-/* Responsive */
+/* Mobile adjustments */
 @media (max-width: 900px) {
   .container { flex-direction: column; }
+
   .sidebar {
     width: 100%;
+    height: auto;
     flex-direction: row;
-    align-items: center;
     justify-content: space-between;
+    align-items: center;
     padding: 12px 20px;
+    border-right: none;
+    border-bottom: 1px solid #222;
+    position: relative;
   }
+
+  .menu-toggle {
+    display: block; /* show menu button */
+  }
+
+  .nav {
+    display: none; /* hidden until toggled */
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: #0a0a0a;
+    width: 100%;
+    border-top: 1px solid #222;
+  }
+
   .nav ul {
-    display: flex;
-    gap: 16px;
-    margin: 0;
+    flex-direction: column;
+    gap: 0;
+    padding: 12px 0;
   }
+
   .nav li {
-    border-left: none;
-    border-bottom: 2px solid transparent;
+    padding: 12px 20px;
+    border: none;
+    text-align: left;
   }
+
   .nav li.active {
-    border-bottom: 2px solid #fff;
-    border-left: none;
-    background: none;
+    border: none;
+    background: rgba(255,255,255,0.05);
   }
+
+  .nav.show {
+    display: block; /* toggled open */
+  }
+
+  .team-grid {
+    grid-template-columns: 1fr; /* stack members */
+    gap: 24px;
+  }
+
+  .team-member {
+    grid-column: auto !important; /* reset manual placement */
+    grid-row: auto !important;
+  }
+
   .hero { height: 240px; }
   .hero-logo-img { width: 180px; }
   .section { padding: 30px 20px; }
@@ -270,11 +302,10 @@ body {
   }
 }
 
-
 /* Footer */
 .footer {
-  background: #0a0a0a;        /* matches sidebar */
-  border-top: 1px solid #222; /* subtle divider */
+  background: #0a0a0a;
+  border-top: 1px solid #222;
   text-align: center;
   padding: 24px 16px;
   color: #888;

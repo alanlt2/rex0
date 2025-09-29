@@ -41,7 +41,7 @@ const observer = new IntersectionObserver(
       }
     });
   },
-  { threshold: 0.2 }
+  { threshold: 0.2 } // triggers when 20% of section is visible
 );
 
 // Apply fade-in to all sections
@@ -50,10 +50,3 @@ document.querySelectorAll(".section").forEach(section => {
   observer.observe(section);
 });
 
-const toggleBtn = document.querySelector('.menu-toggle');
-const nav = document.querySelector('.nav');
-
-toggleBtn.addEventListener('click', () => {
-  nav.classList.toggle('show');       // open/close menu
-  toggleBtn.classList.toggle('open'); // animate bars
-});

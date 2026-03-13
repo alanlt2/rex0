@@ -29,10 +29,10 @@
       <nav class="nav">
         <ul>
           <li data-target="intro">Introduction</li>
-          <li data-target="problem">The Problem</li>
+          <li data-target="problem">Background</li>
           <li data-target="solution">Our Design</li>
-          <li data-target="features">Features</li>
-          <li data-target="progress">Progress</li>
+          <li data-target="process">Our Process</li>
+          <li data-target="progress">Results and Future Goals</li>
           <li data-target="team">Meet the Team</li>
         </ul>
       </nav>
@@ -57,8 +57,11 @@
             <h2>Rehab<br>Redefined<br><span class="highlight"></span></h2>
           </div>
           <div class="intro-right">
-            <p>The road to recovery is not easy, and for most individuals going through it, there are always some difficulties, such as cost and insurance limitations, challenges in correctly performing home exercises, limited communication with professionals, and emotional and mental hurdles like a lack of motivation or a feeling of being overwhelmed.</p>
-            <p>We aim to develop a comprehensive solution that combines a web/mobile application with a wearable device to facilitate recovery processes and keep patients on track to regaining their physical capabilities without as much monetary or mental sacrifice.</p>
+            <p>Stroke often causes long-term hand impairment, limiting a person’s ability to perform everyday tasks. While proprioceptive training has been shown to improve motor recovery, 
+              few rehabilitation tools specifically focus on restoring hand proprioception. REX0 is a dual-glove rehabilitation system designed to address this challenge through real-time 
+              motion replication. A Control Glove measures finger movement using flex sensors, while a Response Glove mirrors those movements using servo-driven tendon mechanisms and spring 
+              retraction. The gloves communicate wirelessly using ESP-NOW, enabling low-latency motion mirroring. A companion web interface provides real-time visualization and guided 
+              training exercises, creating an interactive platform for repeatable hand rehabilitation.</p>
           </div>
         </div>
       </section>
@@ -66,125 +69,313 @@
       <section id="problem" class="section"> 
         <div class="problem-grid">
           <div class="problem-text">
-            <h3>The Problem</h3>
+            <h3>Background</h3>
             <p>
-              To start, we can't make a universal solution to every possible rehab problem, 
-              and obviously, not everyone is recovering from the same injury nor are they 
-              experiencing the same effects from their injuries.
+              Stroke is a leading cause of long-term disability, with 55–75% of survivors experiencing upper limb impairment, making the recovery of fine motor control a major challenge in 
+              post-stroke rehabilitation. Although some recovery occurs naturally, motor improvements often plateau within the first six months, highlighting the need for rehabilitation 
+              technologies that support consistent, high-repetition therapy.
             </p> 
             <p>
-              As such, we would like to focus on a single chunk of rehab patients: stroke survivors. 
-              Globally, strokes are the 2nd leading cause of death, and with 12 million people suffering 
-              from one every year and with so many possible causes, it's undoubtedly a pressing issue.
+              One promising approach is proprioceptive training, which focuses on restoring the body’s ability to sense limb position and movement. Proprioception plays a critical role in 
+              coordinated motion and is often disrupted after a stroke, particularly in the hands. Recent studies have shown that proprioceptive training can improve upper limb motor function 
+              in stroke patients.
             </p>
             <p>
-              Of those who suffer from strokes and survive, 65% fall victim to unilateral impaired hand 
-              function, making that one of the most common and debilitating consequences of strokes. 
-              While some degree of motor recovery is typical, more likely than not, the recovery is minimal 
-              and even tends to plateau after 6 months.
+            To explore this approach, we developed REX0, a dual-glove rehabilitation system designed to assist hand recovery through motion replication. The system consists of a Control Glove, 
+            worn on the functional hand, and a Response Glove, worn on the impaired hand. Flex sensors on the Control Glove measure finger bending and transmit the data wirelessly to the Response Glove, 
+            which reproduces the movement using servo-driven tendon mechanisms and spring retraction. This process enables a training method we call Motion Mimicry, where movements from the healthy hand are mirrored on the impaired hand to support rehabilitation.
             </p>
             <p>
-              As we mentioned before, traditional rehab methods can be limited by time, access to care, 
-              patient mentality, and patient engagement; however, to properly recover from impaired hand 
-              function, it is imperative for patients to remain consistent with effective rehab practices. 
-              This led us to our solution: REX0.
+              To support the hardware system, a lightweight web-based interface provides real-time visualization of finger motion, system status, and training performance. The interface includes 
+              animated 3D hand models and a guided training mode that evaluates how closely a user’s hand posture matches target configurations, allowing clinicians and users to monitor progress during rehabilitation exercises.
             </p>
           </div>
           <div class="problem-image">
-            <img src="assets/problem.png" alt="Patient hand rehabilitation" class="problem-img">
+            <img src="assets/Background.png" alt="Patient hand rehabilitation" class="problem-img">
           </div>
         </div>
       </section>
 
 
       <section id="solution" class="section"> 
-        <div class="design-grid">
-          <div class="design-images">
-            <div class="image-row">
-              <div class="image-box">
-                <p class="image-label top">Control Glove</p>
-                <img src="assets/Control.png" alt="Control Glove" class="circle-img">
-              </div>
-              <div class="image-box">
-                <img src="assets/Response.png" alt="Response Glove" class="circle-img">
-                <p class="image-label bottom">Response Glove</p>
-              </div>    
-            </div>
-            <div class="image-row single">
-              <div class="image-box">
-                <img src="assets/Sensors.png" alt="Sensor Diagram" class="diagram-img">
-                <p class="image-label bottom">Sensor Diagram</p>
-              </div>
-            </div>
-          </div>
+        <div class="design-single-column">
           <div class="design-text">
             <h3>Our Design</h3>
             <p>
-              REX0 is a dual-glove therapy system involving a Control Glove and a Response Glove. Respectively, 
-              the Control Glove is placed on the still functional hand and the Response Glove is placed on the 
-              impaired hand, and as the names suggest, the Control Glove performs an action that the Response 
-              Glove receives and responds with an action.
-            </p> 
+              REX0 is a dual-glove rehabilitation system designed to support hand recovery through
+              real-time motion replication. The system consists of a Control Glove worn on the
+              functional hand and a Response Glove worn on the impaired hand. Finger movements
+              measured on the Control Glove are transmitted wirelessly to the Response Glove,
+              which reproduces the motion to support rehabilitation through a method we call
+              Motion Mimicry.
+            </p>
+
+            <h4>Materials</h4>
+            <p>The main components used to build the REX0 prototype are shown in the materials diagram and listed below:</p>
+
+            <ol class="materials-list">
+              <li>ESP32 WROOM Dev Board (x2)</li>
+              <li>Custom PCB</li>
+              <li>Long Flex Sensor (x10)</li>
+              <li>Continuous Rotation Micro Servo – FS90R (x5)</li>
+              <li>Fishing Wire</li>
+              <li>Metal Crimps</li>
+              <li>3D Printed Glove Attachment (with Velcro)</li>
+              <li>3D Printed Bridge</li>
+              <li>3D Printed Bridge with Crimp</li>
+              <li>Extension Springs</li>
+              <li>3.7V LiPo Battery</li>
+              <li>Hot Glue</li>
+              <li>Fabric Gloves</li>
+            </ol>
+
+            <div class="design-inline-image">
+              <img src="assets/Gloves.png" alt="REX0 Gloves Diagram" class="design-section-img">
+            </div>
+
+            <h4>Control Glove</h4>
             <p>
-              Together, they perform a function we call Motion Mimicry. The Control Glove is equipped with flex 
-              sensors on each finger that measure the degree of each bend. These resistance readings are then 
-              wirelessly transmitted to the Response Glove via an ESP32 Bluetooth module. The Response Glove, 
-              which also contains flex sensors, precisely mirrors the movement by curling its fingers until its 
-              sensor readings match those of the Control Glove, effectively mimicking the user's hand gestures.
+              The Control Glove is responsible for sensing finger movement. Each finger is fitted
+              with a flex sensor that changes resistance as the finger bends. These readings are
+              measured by an ESP32 microcontroller and converted into finger position data. The
+              processed sensor values are then transmitted wirelessly to the Response Glove using
+              ESP-NOW, allowing the system to capture the motion of the user’s healthy hand in
+              near real time.
+            </p>
+
+            <h4>Response Glove</h4>
+            <p>
+              The Response Glove is designed to mechanically reproduce the movements captured by
+              the Control Glove. It receives finger position data wirelessly and actuates its
+              fingers until its measured positions match the target values. To improve motion
+              tracking, the Response Glove also includes flex sensors that provide feedback on
+              the actual finger positions during movement.
             </p>
             <p>
-              To create the curling motion, we designed a multi-part mechanical system. We use a wire-and-anchor 
-              system (Wiring System) to pull each finger, ensuring the correct curling path by strategically 
-              placing anchors between the joints. A micro-servo with a custom 3D-printed spool then actuates this 
-              wire, controlling the pull. To return the finger to its normal position after a movement, we designed 
-              a separate retracting mechanism (Retraction System). This mechanism uses extension springs that 
-              stretch as the wire pulls the finger and naturally retract upon release to bring the finger back to 
-              a straight, resting position.
+              Its actuation system uses continuous-rotation micro servos, tendon wire, extension
+              springs, and custom 3D-printed components. Each servo rotates a spool that pulls
+              a wire attached along the finger, creating a controlled curling motion. Extension
+              springs provide the restoring force needed to return the finger to its neutral
+              position when the wire is released. This wire-driven design allows the glove to
+              produce repeatable finger motion while keeping the structure lightweight and wearable.
+            </p>
+
+            <div class="design-inline-image">
+              <img src="assets/Website.png" alt="REX0 Website Application" class="design-section-img wide-img">
+            </div>
+
+            <h4>Website Application</h4>
+            <p>
+              To complement the hardware system, we developed a lightweight web-based application
+              for real-time visualization and system monitoring. The interface displays finger
+              positions for both gloves, system connection status, and assistive control behavior
+              through numerical readouts and animated 3D hand models.
             </p>
             <p>
-              This system is complemented by a web/mobile application that allows users to track their progress, 
-              access guided exercises, and communicate with healthcare professionals. The app provides real-time 
-              feedback and motivational prompts to encourage consistent use and engagement with the therapy.
+              The application also includes a training mode that presents target hand poses and
+              evaluates performance by calculating how closely the user’s measured hand posture
+              matches the displayed pose. Built using HTML, CSS, JavaScript, Three.js, Node.js,
+              Express, WebSockets, and serial communication, the software translates incoming
+              sensor data into intuitive visual feedback for both users and clinicians.
             </p>
           </div>
         </div>
       </section>
 
+      <section id="process" class="section">
 
-      <section id="features" class="section"> 
-        <div class="features-intro">
-          <h3>Features</h3>
-          <p>Some features we plan to include in this project are quite ambitious, and we hope that we are able to finish it all within the 2-quarter timeframe.</p>
+        <div class="process-container">
+
+          <h3>Our Process</h3>
+
+          <p>
+            Throughout development, we iterated through multiple hardware and software prototypes
+            to refine the motion replication system, validate sensor readings, and develop the
+            visualization interface. The following videos highlight key milestones in the REX0
+            prototyping process.
+          </p>
+
+          <h4>Control Glove Flex Sensor Testing</h4>
+          <p>
+            In this early test, we verified that the flex sensors mounted on the Control Glove
+            accurately captured finger bending. Resistance readings from the sensors were measured
+            by the ESP32 and converted into usable position data for transmission to the Response
+            Glove.
+          </p>
+          <div class="process-video">
+            <iframe
+              src="https://www.youtube.com/embed/vA7YNpsQzkw"
+              title="Control Glove Flex Sensor Testing"
+              frameborder="0"
+              allowfullscreen>
+            </iframe>
+          </div>
+
+          <h4>4 Finger Testing – No UI (Initial Prototype)</h4>
+          <p>
+            This prototype demonstrates one of the first successful four-finger actuation tests.
+            At this stage, the system operated without a visualization interface, focusing solely
+            on verifying the tendon-driven servo mechanism and basic motion replication.
+          </p>
+          <div class="process-video">
+            <iframe
+              src="https://www.youtube.com/embed/MJ2ye11gqp4"
+              title="4 Finger Testing No UI"
+              frameborder="0"
+              allowfullscreen>
+            </iframe>
+          </div>
+
+          <h4>4 Finger Testing – No UI (Improved Version)</h4>
+          <p>
+            After refining the mechanical layout and incorporating better noise reduction, we improved the reliability
+            and responsiveness of the four-finger actuation system.
+          </p>
+          <div class="process-video">
+            <iframe
+              src="https://www.youtube.com/embed/xmpnVGqow0E"
+              title="4 Finger Testing Improved"
+              frameborder="0"
+              allowfullscreen>
+            </iframe>
+          </div>
+
+          <h4>4-Finger Glove Testing – Servo Response Validation</h4>
+          <p>
+            In this test, we verified that servo movement on the Response Glove correctly followed
+            the flex sensor readings from the Control Glove. The experiment confirmed that finger
+            motion could be replicated through wireless communication and closed-loop position
+            tracking.
+          </p>
+          <div class="process-video">
+            <iframe
+              src="https://www.youtube.com/embed/xlTMJYnuDL0"
+              title="Servo Response Verification"
+              frameborder="0"
+              allowfullscreen>
+            </iframe>
+          </div>
+
+          <h4>Full 4 Finger Prototype – Visualization (Response Hand Facing Up)</h4>
+          <p>
+            After integrating the visualization software, the system was able to display real-time
+            finger positions alongside the physical glove motion. This provided an intuitive way
+            to monitor device behavior and verify that the virtual model matched the physical hand.
+          </p>
+          <div class="process-video">
+            <iframe
+              src="https://www.youtube.com/embed/AuPedSJZXGc"
+              title="Visualization Response Hand Up"
+              frameborder="0"
+              allowfullscreen>
+            </iframe>
+          </div>
+
+          <h4>Full 4 Finger Prototype – Training Mode Visualization</h4>
+          <p>
+            This video demonstrates the training mode interface, where the system presents a target
+            hand pose and evaluates how closely the user’s hand matches the displayed configuration.
+            The interface calculates a similarity score to help track rehabilitation progress.
+          </p>
+          <div class="process-video">
+            <iframe
+              src="https://www.youtube.com/embed/kLaRNvIJ60E"
+              title="Training Mode Visualization"
+              frameborder="0"
+              allowfullscreen>
+            </iframe>
+          </div>
+
+          <h4>Full 4 Finger Prototype – Visualization (Response Hand Facing Down)</h4>
+          <p>
+            This demonstration shows the completed prototype operating from a different viewing
+            orientation, confirming that the visualization system remains synchronized with the
+            physical glove regardless of hand orientation.
+          </p>
+          <div class="process-video">
+            <iframe
+              src="https://www.youtube.com/embed/CBIV7LygEQg"
+              title="Visualization Response Hand Down"
+              frameborder="0"
+              allowfullscreen>
+            </iframe>
+          </div>
+
         </div>
 
-        <div class="features-grid">
-          <div class="feature-box">
-            <h4>Web/Mobile Application</h4>
-            <p>- AI-Powered Performance Feedback: The app will provide a feedback system where a patient attempts a hand movement demonstrated by the therapist via the functional glove. A visual similarity score will be generated and displayed on a GUI to help track and visualize a patient's progress. This will be accompanied by an interactive 3D visualization of the glove for a more immersive experience.</p>
-            <p>- Gamified Exercise and Motivation: To increase patient engagement, the app will turn therapy sessions into a game. Patients will be able to earn points, unlock achievements, and compete with others to make rehabilitation more enjoyable.</p>
-            <p>- Patient Progress and Support Portal: This portal will manage PT appointments and track rehab progress. It will also provide commentary and tips, generated by artificial intelligence and informed by licensed physical therapists, to help patients navigate plateaus and stay motivated.</p>
-            <img src="assets/Web_App_img.png" alt="App Features" class="feature-img">
-          </div>
-          <div class="feature-box">
-            <h4>Glove Hardware</h4>
-            <p>- Ergonomic Design: The gloves are intentionally lightweight and breathable to ensure user comfort during extended use.</p>
-            <p>- Rechargeable Power System: All components are powered by rechargeable batteries, providing a convenient and sustainable power source.</p>
-            <p>- Wireless Connectivity: The gloves utilize Bluetooth technology to communicate with the web/mobile application, allowing for seamless data transfer and real-time feedback.</p>
-            <p>- Customizable Fit: The gloves will feature adjustable straps and padding to accommodate a wide range of hand sizes and shapes, ensuring a secure and comfortable fit for all users.</p>
-            <img src="assets/Glove_features.png" alt="Glove Features" class="feature-img">
-          </div>
-        </div>
       </section>
 
 
       <section id="progress" class="section"> 
-        <h3>Progress</h3>
-        <div class="progress-text">
-        <p>We began brainstorming this project back in May 2025 during the pre-senior design course EECS 198, and we did go through a bunch of design changes before settling on the one previously depicted. </p> 
-        <p>For the Control Glove, we wanted to establish by what process we'd get the functional hand movement to be copied over to the Response Glove, and we did come up with a couple things. Our first idea was to place one flex sensor on each finger, and as the flex sensor bends with the finger, it outputs a different resistance reading that changes proportionally to how the finger bends. Unfortunately, we do face one potential issue, being that flex sensor resistance outputs are based on overall bend, meaning that it has only 1 degree of freedom. The finger has 3 major joints, creating 3 major bending points for the sensor, but since the sensor can only read an overall bend, we would have to create an algorithm that accurately estimates the bends. We came up with other alternatives such as having 3 really short sensors on each joint on each finger or outright switching the system from flex sensors to IMUs, but both of those would easily put us over-budget. As a last resort, we will use computer vision to read hand movements. For the time being though, we settled on the single flex sensor per finger and are currently testing longer flex sensors.</p>
-        <p>For the Response Glove, we began with bowden cables, and to test, we used the brakes from an old but functioning bike. From testing, we found that our cables were not the most flexible when curling the finger, and it was a lot thicker than anticipated. We even attempted using it as a push cable instead of a pull, which was an interesting idea, but it couldn't push the finger to curl as much as we preferred. Because of that, we switched over to fishing wire, which ended up working the best as a pull mechanism. </p>
-        <p>After establishing the pull mechanism, we had to start working on the Actuating System and the Retracting System. We started testing the retracting system with rubber bands and then even considered just adding a separate wire that pulls back, however, we found that simply using properly anchored extension springs was more than enough. As for the Actuating System, we couldn’t afford to do linear actuators, so we settled for modified micro-servos with custom 3D printed spools to coil the fishing wire. Right now, the Actuating System is being prototyped.</p>
-        <p>Web/mobile app design is still being planned out and designed, but on the more logistical side, we have already established regular meetings, organized shared documentation, created a Gantt chart, and made a BOM. </p>
+        <div class="results-container">
+          <h3>Results and Future Goals</h3>
+
+          <h4>Results</h4>
+          <p>
+            The REX0 system successfully achieved the development of a functional dual-glove
+            rehabilitation prototype capable of capturing and replicating finger motion for
+            rehabilitation purposes. The implemented system includes both a Control Glove and
+            a Response Glove, supporting motion sensing and actuation across four fingers.
+            Flex sensors on the Control Glove measure finger bending and convert those readings
+            into calibrated position data, which is then transmitted wirelessly to the Response
+            Glove using ESP-NOW.
+          </p>
+
+          <p>
+            Testing demonstrated that the system is capable of reliably capturing finger motion
+            from the functional hand and reproducing that movement on the Response Glove in near
+            real time. At our current data rate, the wireless communication showed about
+            10 milliseconds of latency, and measured finger positions were accurate to about
+            5% of actual position. These results showed that the overall sensing, communication,
+            and actuation pipeline was effective for motion mimicry across four fingers.
+          </p>
+
+          <p>
+            In addition to the hardware system, we developed a supporting web application that
+            provides real-time visualization of both gloves, connection status monitoring, and
+            a training mode for guided rehabilitation. This software layer helped make the
+            prototype more interactive, measurable, and usable for future rehabilitation-focused
+            development.
+          </p>
+
+          <div class="results-links">
+            <a href="assets/Senior_Design_Final_Report.pdf" target="_blank" class="results-link">View Final Report (PDF)</a>
+            <a href="assets/REX0_Final_Poster.pdf" target="_blank" class="results-link">View Final Poster (PDF)</a>
+          </div>
+
+          <h4>Future Goals</h4>
+          <p>
+            While the current prototype demonstrates the core concept of mirrored hand motion
+            replication, several important areas remain for future development. One major goal
+            is extending the current four-finger prototype into a full five-finger system with
+            a more complete and practical thumb mechanism. Because the thumb introduces additional
+            biomechanical complexity and degrees of freedom, future iterations will require more
+            advanced sensing, bracing, and actuation strategies.
+          </p>
+
+          <p>
+            Another goal is improving the accuracy, smoothness, and stability of the system.
+            Flex sensors can introduce drift, nonlinear behavior, and signal noise, so future
+            work will involve better calibration methods, improved filtering, and potentially
+            supplemental sensing approaches to produce more reliable finger tracking and motion
+            control.
+          </p>
+
+          <p>
+            We also aim to perform more formal system evaluation, including dedicated latency
+            testing, communication reliability analysis, and repeatability testing across longer
+            rehabilitation sessions. These measurements would help quantify how consistently the
+            system performs and identify bottlenecks in wireless transmission, sensing, and
+            actuation response.
+          </p>
+
+          <p>
+            On the software side, future goals include expanding the training interface with
+            stronger progress tracking, performance analytics, and more guided rehabilitation
+            exercises. Additional refinement of the glove hardware, cable routing, structural
+            supports, and ergonomic fit will also help improve wearability, durability, and
+            long-term usability.
+          </p>
         </div>
       </section>
 

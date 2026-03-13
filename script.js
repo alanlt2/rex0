@@ -3,8 +3,15 @@ document.querySelectorAll('.nav li').forEach(li => {
   li.addEventListener('click', () => {
     const id = li.dataset.target;
     const section = document.getElementById(id);
+
     if (section) {
-      section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      const yOffset = 20; // adjust if needed
+      const y = section.getBoundingClientRect().top + window.pageYOffset - yOffset;
+
+      window.scrollTo({
+        top: y,
+        behavior: 'smooth'
+      });
     }
   });
 });

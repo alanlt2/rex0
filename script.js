@@ -48,7 +48,7 @@ const observer = new IntersectionObserver(
       }
     });
   },
-  { threshold: 0.2 } // triggers when 20% of section is visible
+  { threshold: 0.01 } // triggers when 20% of section is visible
 );
 
 // Apply fade-in to all sections
